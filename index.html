@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+  </head>
+<body>
+    <div class="app">
+<div data-role="page" id="moduleview" data-theme="a">
+   <div data-role="panel" id="navpanel">
+      <h2>View Deadlines</h2>
+      <ul data-role="listview">
+         <li><a href="#moduleview"  class="ui-btn ui-icon-bullets ui-btn-icon-left">By Modules</a></li>
+         <li data-role="list-divider"></li>
+         <li><a href="#dateview" data-role="list-divider"class="ui-btn ui-icon-calendar ui-btn-icon-left">By Date</a></li>
+
+         <li><a href="#"  class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
+      </ul>
+   </div>
+   <div data-role="header">
+      <h2>HandIn</h2>
+      <a href="#navpanel" data-icon="bars" class="ui-btn-left"> </a>
+   </div>
+   <div data-role="main" class="ui-content">
+
+      <ul data-role="listview">
+         <li data-role="list-divider">Anatomy</li>
+         <li><a href="#">
+              <h3>Assignment 1</h3><p>Mon,19th Sept 2016</p>
+              </a></li>
+         <li data-role="list-divider">Gyneacology</li>
+         <li><a href="#"><h3>Assignment 1</h3><p>Tues, 20th Sept 2016</p></a></li>
+         <li><a href="#"><h3>Assignment 2</h3><p>Thurs, 1st oct 2016</p></a></li>
+         <li data-role="list-divider">Clinicals</li>
+         <li><a href="#">Assignment 4</a></li>
+      </ul><br>
+</div>
+
+</div>
+<div data-role="page" id="dateview" data-theme="a">
+   <div data-role="panel" id="navpanel">
+      <h2>HandIn</h2>
+      <ul data-role="listview">
+         <li><a href="#moduleview"  class="ui-btn ui-icon-bullets ui-btn-icon-left">View by Modules</a></li>
+         <li><a href="#dateview" class="ui-btn ui-icon-calendar ui-btn-icon-left">View By Date</a></li>
+         <li><a href="#"  class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
+      </ul>
+   </div>
+   <div data-role="header">
+      <h2>HandIn</h2>
+      <a href="#navpanel" data-icon="bars" class="ui-btn-left"> </a>
+   </div>
+   <div data-role="main" class="ui-content">
+
+      <ul data-role="listview">
+         <li data-role="list-divider">19th Sept 2016</li>
+         <li><a href="#">
+              <h3>Anatomy</h3><p>Assignment 1</p>
+              </a></li>
+         <li data-role="list-divider">20th Sept 2016</li>
+         <li><a href="#"><h3>Gyneacology</h3><p>Assignment 1</p></a></li>
+         <li><a href="#"><h3>Obsterics</h3><p>Seminar</p></a></li>
+         <li data-role="list-divider">1st oct 2016</li>
+         <li><a href="#">Assignment 4<p>Clinicals</p></a></li>
+      </ul><br>
+</div>
+
+</div>
+
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+    app.initialize();
+</script>
+</body>
+</html>
