@@ -13,27 +13,6 @@
   <script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
-<script>
-$.ajax({
-  //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
-  url: "http://handin.hostmywebapp.com/show_modules.php?yr=1",
-  data: {
-    //zipcode: 97201
-  },
-  success: function( data ) {
-    var a_module='';
-    for(var i=0;i<data.length;i++){
-    a_module+='<li><a href="#">'+data[i].Module_name+'</a></li>';
-    }
-
-     $( "#modules" ).html(a_module);
-      //$( "#profile" ).trigger("refresh");
-    $("#modules").listview("refresh");
-  }
-});
-
-</script>
-
   </head>
 <body>
     <div class="app">
@@ -54,8 +33,16 @@ $.ajax({
    </div>
    <div data-role="main" class="ui-content">
 
-      <ul data-role="listview" id="modules">
-
+      <ul data-role="listview">
+         <li data-role="list-divider">Anatomy</li>
+         <li><a href="#">
+              <h3>Assignment 1</h3><p>Mon,19th Sept 2016</p>
+              </a></li>
+         <li data-role="list-divider">Gyneacology</li>
+         <li><a href="#"><h3>Assignment 1</h3><p>Tues, 20th Sept 2016</p></a></li>
+         <li><a href="#"><h3>Assignment 2</h3><p>Thurs, 1st oct 2016</p></a></li>
+         <li data-role="list-divider">Clinicals</li>
+         <li><a href="#">Assignment 4</a></li>
       </ul><br>
 </div>
 
