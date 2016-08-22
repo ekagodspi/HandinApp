@@ -23,7 +23,7 @@ $.ajax({
   success: function( data ) {
     var a_level='';
     for(var i=0;i<data.length;i++){
-    a_level+='<li><a href="#">'+data[i].Level_name+'</a></li>';
+    a_level+='<li><a href="modules.html">'+data[i].Level_name+'</a></li>';
     }
 
      $( "#levels" ).html(a_level);
@@ -54,7 +54,7 @@ $.ajax({
            </div>
            <div data-role="main" class="ui-content">
 
-              <ul data-role="listview" id="levels">
+              <ul data-role="listview" data-ajax="false"  data-inset="true" id="levels">
         <!-- Dynamic listview  built from data -->
               </ul>
         </div>
