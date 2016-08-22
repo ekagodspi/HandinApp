@@ -13,82 +13,14 @@
   <script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
-<script>
-$.ajax({
-  //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
-  url: "http://handin.hostmywebapp.com/show_modules.php?yr=1",
-  data: {
-    //zipcode: 97201
-  },
-  success: function( data ) {
-    var a_module='';
-    for(var i=0;i<data.length;i++){
-    a_module+='<li><a href="#">'+data[i].Module_name+'</a></li>';
-    }
+  <script>
+  window.location.href="level.html";
 
-     $( "#modules" ).html(a_module);
-      //$( "#profile" ).trigger("refresh");
-    $("#modules").listview("refresh");
-  }
-});
+  </script>
+</head>
 
-</script>
-
-  </head>
 <body>
     <div class="app">
-<div data-role="page" id="moduleview" data-theme="a">
-   <div data-role="panel" id="navpanel" data-theme="c">
-      <h2>View Deadlines</h2>
-      <ul data-role="listview">
-         <li><a href="#moduleview"  class="ui-btn ui-icon-bullets ui-btn-icon-left">By Modules</a></li>
-         <li data-role="list-divider"></li>
-         <li><a href="#dateview" data-role="list-divider"class="ui-btn ui-icon-calendar ui-btn-icon-left">By Date</a></li>
-
-         <li><a href="#"  class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
-      </ul>
-   </div>
-   <div data-role="header">
-      <h2>HandIn</h2>
-      <a href="#navpanel" data-icon="bars" class="ui-btn-left"> </a>
-   </div>
-   <div data-role="main" class="ui-content">
-
-      <ul data-role="listview" id="modules">
-
-      </ul><br>
-</div>
-
-</div>
-<div data-role="page" id="dateview" data-theme="a">
-   <div data-role="panel" id="navpanel">
-      <h2>HandIn</h2>
-      <ul data-role="listview">
-         <li><a href="#moduleview"  class="ui-btn ui-icon-bullets ui-btn-icon-left">View by Modules</a></li>
-         <li><a href="#dateview" class="ui-btn ui-icon-calendar ui-btn-icon-left">View By Date</a></li>
-         <li><a href="#"  class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
-      </ul>
-   </div>
-   <div data-role="header">
-      <h2>HandIn</h2>
-      <a href="#navpanel" data-icon="bars" class="ui-btn-left"> </a>
-   </div>
-   <div data-role="main" class="ui-content">
-
-      <ul data-role="listview">
-         <li data-role="list-divider">19th Sept 2016</li>
-         <li><a href="#">
-              <h3>Anatomy</h3><p>Assignment 1</p>
-              </a></li>
-         <li data-role="list-divider">20th Sept 2016</li>
-         <li><a href="#"><h3>Gyneacology</h3><p>Assignment 1</p></a></li>
-         <li><a href="#"><h3>Obsterics</h3><p>Seminar</p></a></li>
-         <li data-role="list-divider">1st oct 2016</li>
-         <li><a href="#">Assignment 4<p>Clinicals</p></a></li>
-      </ul><br>
-</div>
-
-</div>
 
 </div>
 <script type="text/javascript" src="cordova.js"></script>

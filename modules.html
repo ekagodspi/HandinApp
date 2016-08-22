@@ -14,16 +14,18 @@
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
 <script>
-// var qs = new Querystring();
-// var year = qs.get("yr");
-//
-// var value1="value1";
-// var value2="value2";
-// var queryString = "?para1=" + value1 + "&para2=" + value2;
+function store_mid(id){
+localStorage.setItem('mid',id);
+window.location.href="assignments.html";
+}
+</script>
+<script>
+var lvl=localStorage.getItem('lv_id');
 
 $.ajax({
   //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
-  url: "http://handin.hostmywebapp.com/show_modules.php?yr="+year,
+  url: "http://handin.hostmywebapp.com/show_modules.php?yr="+lvl,
+  //+year,
   //+year,
   data: {
     //zipcode: 97201
@@ -31,7 +33,8 @@ $.ajax({
   success: function( data ) {
     var a_module='';
     for(var i=0;i<data.length;i++){
-    a_module+='<li><a href="#">'+data[i].Module_name+'</a></li>';
+      var m_id= data[i].Module_id;
+    a_module+='<li><a href="#" onclick=store_mid("'+m_id+'")>'+data[i].Module_name+'</a></li>';
     }
 
      $( "#modules" ).html(a_module);

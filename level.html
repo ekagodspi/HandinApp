@@ -13,6 +13,14 @@
   <script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
+  <script>
+//function to store selected assignment id on device
+  function store_lv_id(id){
+  localStorage.setItem('lv_id',id);
+  window.location.href="modules.html";
+  }
+  </script>
+
 <script>
 $.ajax({
   //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
@@ -23,7 +31,8 @@ $.ajax({
   success: function( data ) {
     var a_level='';
     for(var i=0;i<data.length;i++){
-    a_level+='<li><a href="modules.html">'+data[i].Level_name+'</a></li>';
+      var lv_id= data[i].level_id;
+    a_level+='<li><a href="#" onclick=store_lv_id("'+lv_id+'")>'+data[i].Level_name+'</a></li>';
     }
 
      $( "#levels" ).html(a_level);
@@ -54,7 +63,7 @@ $.ajax({
            </div>
            <div data-role="main" class="ui-content">
 
-              <ul data-role="listview" data-ajax="false"  data-inset="true" id="levels">
+              <ul data-role="listview" data-ajax="false" id="levels">
         <!-- Dynamic listview  built from data -->
               </ul>
         </div>

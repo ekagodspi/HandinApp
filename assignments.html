@@ -13,17 +13,29 @@
   <script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
+  <script>
+//function to store selected assignment id on device
+  function store_ass_id(id){
+  localStorage.setItem('ass_id',id);
+  window.location.href="assignment_detail.html";
+  }
+  </script>
+
 <script>
+//retrieve the module id from the local storage
+var mid=localStorage.getItem('mid');
+
 $.ajax({
   //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
-  url: "http://handin.hostmywebapp.com/show_assignments.php?mid=MB101",
+  url: "http://handin.hostmywebapp.com/show_assignments.php?mid="+mid,
   data: {
     //zipcode: 97201
   },
   success: function( data ) {
     var an_assignment='';
     for(var i=0;i<data.length;i++){
-    an_assignment+='<li><a href="#"><h3>'+data[i].Title+'</h3><p>'+data[i].Module_id+'</p><p class="ui-li-aside">'+data[i].Due_date+'</p></a></li>';
+      var asn_id= data[i].Assignment_id;
+    an_assignment+='<li><a href="#" onclick=store_ass_id("'+asn_id+'")><h3>'+data[i].Title+'</h3><p>'+data[i].Module_id+'</p><p class="ui-li-aside">'+data[i].Due_date+'</p></a></li>';
     }
 
      $( "#assignments" ).html(an_assignment);
