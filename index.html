@@ -22,12 +22,17 @@
   </script>
 
 <script>
+
+
 $.ajax({
   //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
-  url: "http://handin.hostmywebapp.com/show_levels.php",
+  url: "http://handin.hostmywebapp.com/show_levelsp.php",
   data: {
     //zipcode: 97201
   },
+  dataType: 'jsonp',
+		jsonp: 'jsoncallback',
+		timeout: 5000,
   success: function( data ) {
     var a_level='';
     for(var i=0;i<data.length;i++){
@@ -37,7 +42,7 @@ $.ajax({
 
      $( "#levels" ).html(a_level);
       //$( "#profile" ).trigger("refresh");
-    $("#levels").listview("refresh");
+   $("#levels").listview("refresh");
   }
 });
 
