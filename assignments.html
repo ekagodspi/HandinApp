@@ -25,6 +25,8 @@
 //retrieve the module id from the local storage
 var mid=localStorage.getItem('mid');
 
+
+
 $.ajax({
   //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
   url: "http://handin.hostmywebapp.com/show_assignments.php?mid="+mid,
@@ -32,26 +34,27 @@ $.ajax({
     //zipcode: 97201
   },
   success: function( data ) {
+    var title='<h3> Module '+mid+' Assignments</h3><br>';
+    $( "#page_title" ).html(title);
+
     var an_assignment='';
     if (data.length > 0){
     for(var i=0;i<data.length;i++){
       var asn_id= data[i].Assignment_id;
     an_assignment+='<li><a href="#" onclick=store_ass_id("'+asn_id+'")><h3>'+data[i].Title+'</h3><p>'+data[i].Module_id+'</p><p class="ui-li-aside">'+data[i].Due_date+'</p></a></li>';
     }
-    var title='<h3> Module '+mid+' Assignments</h3>';
-   $( "#page_title" ).html(title);
      $( "#assignments" ).html(an_assignment);
       //$( "#profile" ).trigger("refresh");
     $("#assignments").listview("refresh");
   }
   else {
-  var no_data='<p>No Assignment Data to display.</p>';
+  var no_data='<p><hr>There are no current Assignments</p>';
   $( "#error" ).html(no_data);
 }
 },
 
 error: function(){
-  var error='<p>There was an error loading the data.</p>';
+  var error='<p>Unable to load Assignments data.</p>';
   $( "#error" ).html(error);
 
 }
