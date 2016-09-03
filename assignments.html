@@ -33,15 +33,29 @@ $.ajax({
   },
   success: function( data ) {
     var an_assignment='';
+    if (data.length > 0){
     for(var i=0;i<data.length;i++){
       var asn_id= data[i].Assignment_id;
     an_assignment+='<li><a href="#" onclick=store_ass_id("'+asn_id+'")><h3>'+data[i].Title+'</h3><p>'+data[i].Module_id+'</p><p class="ui-li-aside">'+data[i].Due_date+'</p></a></li>';
     }
-
+    var title='<h3> Module '+mid+' Assignments</h3>';
+   $( "#page_title" ).html(title);
      $( "#assignments" ).html(an_assignment);
       //$( "#profile" ).trigger("refresh");
     $("#assignments").listview("refresh");
   }
+  else {
+  var no_data='<p>No Assignment Data to display.</p>';
+  $( "#error" ).html(no_data);
+}
+},
+
+error: function(){
+  var error='<p>There was an error loading the data.</p>';
+  $( "#error" ).html(error);
+
+}
+
 });
 
 </script>
@@ -49,7 +63,7 @@ $.ajax({
   </head>
 <body>
       <div class="app">
-        <div data-role="page" id="Level_View" data-theme="a" data-add-back-btn="true">
+        <div data-role="page" id="Level_View" data-theme="a">
            <!-- <div data-role="panel" id="navpanel" data-theme="c">
               <h2>View Deadlines</h2>
               <ul data-role="listview">
@@ -62,13 +76,14 @@ $.ajax({
            </div> -->
            <div data-role="header">
               <h2>HandIn</h2>
-              <a href="#navpanel" data-icon="bars" class="ui-btn-left"> </a>
+          <a href="#" data-rel="back" data-icon="arrow-l" data-transition="fade" class="ui-btn-left"> </a>
            </div>
            <div data-role="main" class="ui-content">
-
+              <div id="page_title"> </div>
               <ul data-role="listview" id="assignments">
         <!-- Dynamic listview  built from data -->
               </ul>
+                <div id="error"> </div>
         </div>
 
         </div>

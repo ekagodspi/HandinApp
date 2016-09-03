@@ -32,15 +32,31 @@ $.ajax({
   },
   success: function( data ) {
     var a_module='';
+    if (data.length > 0){
     for(var i=0;i<data.length;i++){
-      var m_id= data[i].Module_id;
+        var m_id= data[i].Module_id;
     a_module+='<li><a href="#" onclick=store_mid("'+m_id+'")>'+data[i].Module_name+'</a></li>';
     }
-
+    var title='<h3> Year '+lvl+' Modules</h3>';
+   $( "#title" ).html(title);
      $( "#modules" ).html(a_module);
       //$( "#profile" ).trigger("refresh");
     $("#modules").listview("refresh");
+}
+else {
+var no_data='<p>No module Data to display.</p>';
+$( "#error" ).html(no_data);
+}
+  },
+
+  error: function(){
+    var error='<p>There was an error loading the data.</p>';
+    $( "#error" ).html(error);
+
   }
+
+
+
 });
 
 </script>
@@ -52,13 +68,15 @@ $.ajax({
 
    <div data-role="header">
       <h2>HandIn</h2>
-      <a href="#" data-icon="bars" class="ui-btn-left"> </a>
+    <a href="#" data-rel="back" data-icon="arrow-l" data-transition="fade" class="ui-btn-left"> </a>
    </div>
    <div data-role="main" class="ui-content">
+      <div id="title"> </div>
 
       <ul data-role="listview" id="modules">
 
       </ul><br>
+        <div id="error"> </div>
 </div>
 
 </div>
