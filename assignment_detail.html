@@ -4,10 +4,6 @@
 
   <link rel="stylesheet" href="themes/Handapptheme.min.css" />
   <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-  <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-
   <link rel="stylesheet" href="jqm/jquery.mobile.structure-1.4.5.min.css" />
   	<script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.min.js"></script>
@@ -17,14 +13,15 @@
 //retrieve the Assignment id from the local storage
 var assn_id=localStorage.getItem('ass_id');
 
+//ajax call to the server to retrieve list of modules which would be returned as json data
 $.ajax({
-  //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
   url: "http://handin.hostmywebapp.com/assignment_details.php?ass_id="+assn_id,
-  data: {
-    //zipcode: 97201
-  },
+
+// this function is excecuted on successful retrieval of json data
   success: function( data ) {
     var i=0
+
+//listitems showing assignments details is dynamically built from returned json data
     var assignment_title='<h3>Title: '+data[i].Title+'</h3>';
     var assignment_detail='';
   assignment_detail+='<li><strong>Module</strong> :'+data[i].Module_id+'</li>';
@@ -51,16 +48,7 @@ $.ajax({
 <body>
       <div class="app">
         <div data-role="page" id="Assignment_Detail_View" data-theme="a" data-add-back-btn="true">
-           <!-- <div data-role="panel" id="navpanel" data-theme="c">
-              <h2>View Deadlines</h2>
-              <ul data-role="listview">
-                 <li><a href="#moduleview"  class="ui-btn ui-icon-bullets ui-btn-icon-left">By Modules</a></li>
-                 <li data-role="list-divider"></li>
-                 <li><a href="#dateview" data-role="list-divider"class="ui-btn ui-icon-calendar ui-btn-icon-left">By Date</a></li>
 
-                 <li><a href="#"  class="ui-btn ui-icon-gear ui-btn-icon-left">Settings</a></li>
-              </ul>
-           </div> -->
            <div data-role="header">
               <h2>HandIn</h2>
           <a href="#" data-rel="back" data-icon="arrow-l" data-transition="fade" class="ui-btn-left"> </a>
@@ -68,13 +56,13 @@ $.ajax({
            <div data-role="main" class="ui-content">
                <div id="ass_title"> </div>
                <ul data-role="listview" id="details">
-
+<!-- dynamic list view to display assignments details-->
                </ul><br>
         </div>
 
         </div>
       </div>
-      <!--<script type="text/javascript" src="cordova.js"></script>-->
+
       <script type="text/javascript" src="js/index.js"></script>
       <script type="text/javascript">
           app.initialize();

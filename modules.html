@@ -1,54 +1,55 @@
 <!DOCTYPE html>
 <head>
   <link rel="stylesheet" href="jqm/jquery.mobile-1.4.5.min.css">
-
   <link rel="stylesheet" href="themes/Handapptheme.min.css" />
   <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
-  <!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> -->
-
   <link rel="stylesheet" href="jqm/jquery.mobile.structure-1.4.5.min.css" />
   	<script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.min.js"></script>
   <script src="jqm/jquery.mobile-1.4.5.min.js"></script>
 
 <script>
+//function to store selected module id on device and navigate to assignments page
 function store_mid(id){
 localStorage.setItem('mid',id);
 window.location.href="assignments.html";
 }
 </script>
+
 <script>
+//retrieval of selected id from previous page which would be appended to url in ajax call
 var lvl=localStorage.getItem('lv_id');
 
+//ajax call to the server to retrieve list of modules which would be returned as json data
 $.ajax({
-  //url: "http://handin.hostmywebapp.com/api.php?method=show_modules&jsoncallback=?",
   url: "http://handin.hostmywebapp.com/show_modules.php?yr="+lvl,
-  //+year,
-  //+year,
-  data: {
-    //zipcode: 97201
-  },
+
+  // this function is excecuted on successful retrieval of json data
   success: function( data ) {
+
+    //this variable stores the markup required to build the list of modules
     var a_module='';
     if (data.length > 0){
     for(var i=0;i<data.length;i++){
         var m_id= data[i].Module_id;
+        //iteratively build the list items for module list
     a_module+='<li><a href="#" onclick=store_mid("'+m_id+'")>'+data[i].Module_name+'</a></li>';
     }
+
     var title='<h3> Year '+lvl+' Modules</h3>';
+
+  //append title to title div and a_module to modules list view to populate UI
    $( "#title" ).html(title);
      $( "#modules" ).html(a_module);
-      //$( "#profile" ).trigger("refresh");
     $("#modules").listview("refresh");
 }
 else {
+  //this is excecuted if an emptydata array is returned
 var no_data='<p>No module Data to display.</p>';
 $( "#error" ).html(no_data);
 }
   },
-
+//this executed if the ajax call was unsuccessful maybe there no internet connection
   error: function(){
     var error='<p>There was an error loading the data.</p>';
     $( "#error" ).html(error);
@@ -68,11 +69,13 @@ $( "#error" ).html(no_data);
 
    <div data-role="header">
       <h2>HandIn</h2>
+
+      <!--markup for  the back button -->
     <a href="#" data-rel="back" data-icon="arrow-l" data-transition="fade" class="ui-btn-left"> </a>
    </div>
    <div data-role="main" class="ui-content">
       <div id="title"> </div>
-
+  <!--dynamic listview that will be populated by ajax call -->
       <ul data-role="listview" id="modules">
 
       </ul><br>
@@ -83,7 +86,7 @@ $( "#error" ).html(no_data);
 
 
 </div>
-<!--<script type="text/javascript" src="cordova.js"></script>-->
+
 <script type="text/javascript" src="js/index.js"></script>
 <script type="text/javascript">
     app.initialize();
